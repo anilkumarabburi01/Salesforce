@@ -1,0 +1,19 @@
+select Name,Description from Account where Name ='Anil'
+select Name,Description from Account where Name !='Anil'
+select Name,Description from Account where Name in ('Anil','test')
+select Name,Description from Account where Name like 'Anil'
+select Name,Description from Account where AnnualRevenue >=23456
+select Name,Description from Account where AnnualRevenue <=23456
+select Name,Description from Account where AnnualRevenue >23456
+select Name,Description from Account where AnnualRevenue <23456
+select Name,Description from Account where Description !=NULL
+select Name,Description from Account where AnnualRevenue >=3655 and AnnualRevenue<=66755
+select Name,Description from Account where AnnualRevenue >=3655 or AnnualRevenue<=66755
+select Name,Description from Account where Rating includes ('hot','warm','cold')
+select Name,Description from Account where Rating excludes ('hot','warm','cold')
+select Name,Description from Account where CreatedDate =:System.today() 
+select Name,Description from Account where AnnualRevenue >=23456 order by name;
+select Name,Description from Account where AnnualRevenue >=23456 order by name limit 1;
+select Name,Description from Account where AnnualRevenue >=23456 for update;
+
+

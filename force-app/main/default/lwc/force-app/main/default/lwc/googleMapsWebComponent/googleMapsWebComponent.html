@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Distance Calculator" icon-name="custom:custom14" class="back">
+        <div class="container slds-theme_default slds-box slds-p-around_medium slds-m-around_medium back">
+            <b><lightning-input type="text" label="Source Location" value={origin} onchange={handleOriginChange} onkeyup={sourceChange} class="input-style" placeholder="Enter your Starting Point" style="height: 50px;"></lightning-input></b>
+            <template if:true={sourceList.length}>
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={sourceList} for:item="suggestion">
+                        <li key={suggestion} class="slds-item suggestion-style" onclick={handleSourceClick}>{suggestion}</li>
+                    </template>
+                </ul>
+            </template>
+            <b><lightning-input type="text" label="Destination Location" value={destination} onchange={DestinationChange} onkeyup={DestinationKeyup} class="input-style" placeholder="Enter your Final Point" style="height: 50px;"></lightning-input></b>
+            <template if:true={endList.length}>
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={endList} for:item="suggestion">
+                        <li key={suggestion} class="slds-item suggestion-style" onclick={DestinationAutoComplete}>{suggestion}</li>
+                    </template>
+                </ul>
+            </template>
+            <b><lightning-combobox 
+                name="mode" 
+                label="Choose Your Mode of Transport" 
+                value={mode} 
+                placeholder="Select Mode" 
+                options={modeOptions} 
+                onchange={TransportSelect}
+                class="input-style"
+                style="height: 50px;">
+            </lightning-combobox></b>
+            <br>
+            <lightning-button variant="success" label="Get Directions" onclick={getDirectionsClick} class="slds-m-top_medium get-directions-btn" style="height: 40px;"></lightning-button>
+        </div>
+        <template if:true={finalResult}>
+            <div class="directions-data slds-box slds-theme_success slds-p-around_medium slds-m-around_medium">
+                <p><strong>Distance to Travel from source to destination:</strong> {finalResult.distance}</p>
+                <p><strong>Travel Time:</strong> {finalResult.time}</p>
+                <p><strong>Estimated Cost:</strong> $ {finalResult.cost}</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>
